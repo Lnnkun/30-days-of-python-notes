@@ -1,6 +1,6 @@
 # 🐍 30 Days of Python · 学习笔记
 
-跟着 [Asabeneh / 30-Days-Of-Python](https://github.com/Asabeneh/30-Days-Of-Python) 学 Python，每天一篇**我自己的简要总结**：核心概念表格 + 代码例子 + 容易踩的坑 + 思维导图（Mermaid，GitHub 可直接显示）。
+跟着 [Asabeneh / 30-Days-Of-Python](https://github.com/Asabeneh/30-Days-Of-Python) 学 Python，每天一篇**我自己的简要总结**：核心概念表格 + 代码例子 + 容易踩的坑 + 思维导图
 
 **进度**：已完成 19 / 30 天（从 Day 18 开始记录）
 
