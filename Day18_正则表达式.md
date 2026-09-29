@@ -1,12 +1,144 @@
-# Day 18 · 正则表达式（RegEx）
+# Day 18 - 正则表达式(Regular Expressions)
 
-
-**一句话**：正则 = 用一串"模式"去文本里 **找 / 取 / 换 / 切** 东西；Python 用 `re` 模块，模式写成 `r'...'`。
+```mermaid
+%%{init: {'flowchart': {'curve': 'basis', 'nodeSpacing': 8, 'rankSpacing': 40}}}%%
+flowchart LR
+  R(["Day 18 正则表达式"])
+  R --- b0["re 模块"]
+  classDef c0 fill:none,stroke:#F5A623,stroke-width:2px,color:#F5A623,font-weight:bold
+  class b0 c0
+  b0 --- n1["import re"]
+  b0 --- n2["模式写成 r'...'"]
+  b0 --- n3["flags=re.I 忽略大小写"]
+  R --- b1["5 个核心函数"]
+  classDef c1 fill:none,stroke:#4A90E2,stroke-width:2px,color:#4A90E2,font-weight:bold
+  class b1 c1
+  b1 --- n4["re.match()"]
+  n4 --- n5["只看开头"]
+  n4 --- n6["返回 Match 或 None"]
+  b1 --- n7["re.search()"]
+  n7 --- n8["全文找第一个"]
+  b1 --- n9["re.findall()"]
+  n9 --- n10["全文找所有"]
+  n9 --- n11["返回 list"]
+  b1 --- n12["re.sub()"]
+  n12 --- n13["替换所有匹配"]
+  b1 --- n14["re.split()"]
+  n14 --- n15["按匹配处切开，返回 list"]
+  R --- b2["字符集"]
+  classDef c2 fill:none,stroke:#2ECC71,stroke-width:2px,color:#2ECC71,font-weight:bold
+  class b2 c2
+  b2 --- n16["[abc] 任选一个"]
+  b2 --- n17["[a-z] [0-9] 范围"]
+  b2 --- n18["[^abc] 取反"]
+  b2 --- n19["\d 数字 · \D 非数字"]
+  b2 --- n20["\w 单词字符 · \s 空白"]
+  R --- b3["位置"]
+  classDef c3 fill:none,stroke:#A66CFF,stroke-width:2px,color:#A66CFF,font-weight:bold
+  class b3 c3
+  b3 --- n21["^ 开头"]
+  b3 --- n22["$ 结尾"]
+  b3 --- n23[". 任意字符（除换行）"]
+  R --- b4["次数"]
+  classDef c4 fill:none,stroke:#FF6B6B,stroke-width:2px,color:#FF6B6B,font-weight:bold
+  class b4 c4
+  b4 --- n24["* 0 次或多次"]
+  b4 --- n25["+ 1 次或多次"]
+  n25 --- n26["\d+ 取完整数字"]
+  b4 --- n27["? 0 或 1 次"]
+  n27 --- n28["[Ee]-?mail"]
+  b4 --- n29["{n} {n,} {n,m} 指定次数"]
+  n29 --- n30["\d{4} 只要 4 位"]
+  R --- b5["组合"]
+  classDef c5 fill:none,stroke:#1ABC9C,stroke-width:2px,color:#1ABC9C,font-weight:bold
+  class b5 c5
+  b5 --- n31["a|b 或"]
+  b5 --- n32["( ) 分组捕获"]
+  b5 --- n33["\ 转义特殊字符"]
+  R --- b6["容易踩的坑"]
+  classDef c6 fill:none,stroke:#F06292,stroke-width:2px,color:#F06292,font-weight:bold
+  class b6 c6
+  b6 --- n34["永远用 r'...'"]
+  b6 --- n35["re.sub 要写 flags=re.I"]
+  n35 --- n36["第 4 个位置参数是 count"]
+  b6 --- n37["match 只看开头"]
+  b6 --- n38["贪婪 vs 非贪婪 .*?"]
+  R --- b7["练习要点"]
+  classDef c7 fill:none,stroke:#FFC107,stroke-width:2px,color:#FFC107,font-weight:bold
+  class b7 c7
+  b7 --- n39["高频词"]
+  n39 --- n40["findall + Counter"]
+  b7 --- n41["提取数字"]
+  n41 --- n42["-?\d+"]
+  b7 --- n43["合法变量名"]
+  n43 --- n44["re.fullmatch"]
+  b7 --- n45["清洗文本"]
+  n45 --- n46["re.sub 去掉符号"]
+  classDef leaf fill:none,stroke:none,color:#9AA0A6
+  classDef root fill:#5B5FC7,stroke:none,color:#fff,font-weight:bold
+  class R root
+  class n1,n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16,n17,n18,n19,n20,n21,n22,n23,n24,n25,n26,n27,n28,n29,n30,n31,n32,n33,n34,n35,n36,n37,n38,n39,n40,n41,n42,n43,n44,n45,n46 leaf
+  linkStyle 0 stroke:#F5A623,stroke-width:1.5px
+  linkStyle 1 stroke:#F5A623,stroke-width:1.5px
+  linkStyle 2 stroke:#F5A623,stroke-width:1.5px
+  linkStyle 3 stroke:#F5A623,stroke-width:1.5px
+  linkStyle 4 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 5 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 6 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 7 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 8 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 9 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 10 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 11 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 12 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 13 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 14 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 15 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 16 stroke:#4A90E2,stroke-width:1.5px
+  linkStyle 17 stroke:#2ECC71,stroke-width:1.5px
+  linkStyle 18 stroke:#2ECC71,stroke-width:1.5px
+  linkStyle 19 stroke:#2ECC71,stroke-width:1.5px
+  linkStyle 20 stroke:#2ECC71,stroke-width:1.5px
+  linkStyle 21 stroke:#2ECC71,stroke-width:1.5px
+  linkStyle 22 stroke:#2ECC71,stroke-width:1.5px
+  linkStyle 23 stroke:#A66CFF,stroke-width:1.5px
+  linkStyle 24 stroke:#A66CFF,stroke-width:1.5px
+  linkStyle 25 stroke:#A66CFF,stroke-width:1.5px
+  linkStyle 26 stroke:#A66CFF,stroke-width:1.5px
+  linkStyle 27 stroke:#FF6B6B,stroke-width:1.5px
+  linkStyle 28 stroke:#FF6B6B,stroke-width:1.5px
+  linkStyle 29 stroke:#FF6B6B,stroke-width:1.5px
+  linkStyle 30 stroke:#FF6B6B,stroke-width:1.5px
+  linkStyle 31 stroke:#FF6B6B,stroke-width:1.5px
+  linkStyle 32 stroke:#FF6B6B,stroke-width:1.5px
+  linkStyle 33 stroke:#FF6B6B,stroke-width:1.5px
+  linkStyle 34 stroke:#FF6B6B,stroke-width:1.5px
+  linkStyle 35 stroke:#1ABC9C,stroke-width:1.5px
+  linkStyle 36 stroke:#1ABC9C,stroke-width:1.5px
+  linkStyle 37 stroke:#1ABC9C,stroke-width:1.5px
+  linkStyle 38 stroke:#1ABC9C,stroke-width:1.5px
+  linkStyle 39 stroke:#F06292,stroke-width:1.5px
+  linkStyle 40 stroke:#F06292,stroke-width:1.5px
+  linkStyle 41 stroke:#F06292,stroke-width:1.5px
+  linkStyle 42 stroke:#F06292,stroke-width:1.5px
+  linkStyle 43 stroke:#F06292,stroke-width:1.5px
+  linkStyle 44 stroke:#F06292,stroke-width:1.5px
+  linkStyle 45 stroke:#FFC107,stroke-width:1.5px
+  linkStyle 46 stroke:#FFC107,stroke-width:1.5px
+  linkStyle 47 stroke:#FFC107,stroke-width:1.5px
+  linkStyle 48 stroke:#FFC107,stroke-width:1.5px
+  linkStyle 49 stroke:#FFC107,stroke-width:1.5px
+  linkStyle 50 stroke:#FFC107,stroke-width:1.5px
+  linkStyle 51 stroke:#FFC107,stroke-width:1.5px
+  linkStyle 52 stroke:#FFC107,stroke-width:1.5px
+  linkStyle 53 stroke:#FFC107,stroke-width:1.5px
+```
 
 ---
 
-## 1. 5 个核心函数（先记这张表）
+## 补充说明
 
+### 1. 5 个核心函数
 | 函数 | 做什么 | 返回 |
 |---|---|---|
 | `re.match(p, s)` | **只看开头**是否匹配 | Match 对象 / `None` |
@@ -15,24 +147,12 @@
 | `re.sub(p, 新, s)` | **替换**所有匹配 | 新字符串 |
 | `re.split(p, s)` | 按匹配处**切开** | `list` |
 
-```mermaid
-flowchart LR
-    A[我要做什么?] --> B{只关心开头?}
-    B -- 是 --> M[re.match]
-    B -- 否 --> C{要几个?}
-    C -- 第一个 --> S[re.search]
-    C -- 全部 --> F[re.findall]
-    A --> R[替换 → re.sub]
-    A --> P[切分 → re.split]
-```
-
 ```python
 import re
 txt = 'I love to teach python and javaScript'
 
 m = re.match('I love to teach', txt, re.I)   # re.I = 忽略大小写
 print(m.span())               # (0, 15) → 起止位置
-print(txt[m.start():m.end()]) # I love to teach
 print(re.match('love', txt))  # None（不在开头）
 
 re.findall('python', 'Python and python', re.I)  # ['Python', 'python']
@@ -40,10 +160,7 @@ re.sub('%', '', 'te%ac%her')                     # 'teacher'  清洗文本
 re.split('\n', 'line1\nline2')                   # ['line1', 'line2']
 ```
 
----
-
-## 2. 模式语法速查
-
+### 2. 模式语法速查
 | 符号 | 含义 | 例子 → 结果 |
 |---|---|---|
 | `[abc]` `[a-z]` `[0-9]` | 字符集：其中**任意一个** | `[Pp]ython` → Python / python |
@@ -60,8 +177,7 @@ re.split('\n', 'line1\nline2')                   # ['line1', 'line2']
 | `( )` | 分组 + 捕获 | |
 | `\` | 转义特殊字符 | `\.` 匹配真正的点 |
 
-**必背 3 个例子**
-
+### 3. 必背 3 个例子
 ```python
 txt = 'made on December 6,  2019 and revised on July 8, 2021'
 re.findall(r'\d', txt)     # ['6','2','0','1','9',...]  一个一个数字 ✗
@@ -69,26 +185,20 @@ re.findall(r'\d+', txt)    # ['6', '2019', '8', '2021']  完整数字 ✓
 re.findall(r'\d{4}', txt)  # ['2019', '2021']            只要 4 位 ✓
 ```
 
-### 速查图（原教程附图）
-
+### 4. 速查图（原教程附图）
 ![Day18-regex-cheatsheet.png](images/Day18-regex-cheatsheet.png)
 
-> ⚠️ 这张图是通用/JavaScript 风格：`g` 标志和 `$1` 替换写法 **Python 里没有**。Python 用 `re.findall` 代替 `g`，替换引用分组写 `\1`。
+- 这张图是通用/JavaScript 风格：`g` 标志和 `$1` 替换写法 **Python 里没有**
+- Python 用 `re.findall` 代替 `g`，替换引用分组写 `\1`
 
----
+### 5. 容易踩的坑
+- **写模式永远用 `r'...'`**（原始字符串），否则 `\d`、`\b` 会被 Python 先转义掉
+- **`re.sub` 的第 4 个位置参数是 `count` 不是 flags**：`re.sub(p, new, s, re.I)` 实际是"最多替换 2 次"（`re.I == 2`），正确写法是 `flags=re.I`（原教程这里写错了）
+- `match` 只看开头 → 大多数情况用 `search` / `findall`
+- `^` 在 `[]` 外 = 开头；在 `[]` 里第一位 = 取反
+- `*` `+` 默认**贪婪**（尽量多吃），加 `?` 变非贪婪：`.*?`
 
-## 3. 容易踩的坑
-
-1. **写模式永远用 `r'...'`**（原始字符串），否则 `\d`、`\b` 会被 Python 先转义掉
-2. **`re.sub` 的第 4 个位置参数是 `count` 不是 flags**：`re.sub(p, new, s, re.I)` 实际是"最多替换 2 次"（`re.I == 2`）。正确写法：`re.sub(p, new, s, flags=re.I)`（原教程这里写错了）
-3. `match` 只看开头 → 大多数情况用 `search` / `findall`
-4. `^` 在 `[]` 外 = 开头；在 `[]` 里第一位 = 取反
-5. `*` `+` 默认**贪婪**（尽量多吃），加 `?` 变非贪婪：`.*?`
-
----
-
-## 4. 练习要点（我自己做时的思路）
-
+### 6. 练习要点
 | 等级 | 题目 | 关键工具 |
 |---|---|---|
 | L1 | 段落里最高频的词 | `re.findall(r'\w+', s)` + `collections.Counter` |
@@ -97,55 +207,4 @@ re.findall(r'\d{4}', txt)  # ['2019', '2021']            只要 4 位 ✓
 | L3 | 清洗乱码文本 + 前 3 高频词 | `re.sub(r'[^A-Za-z ]', '', s)` + `Counter.most_common(3)` |
 
 ---
-
-## 5. 思维导图
-
-```mermaid
-mindmap
-  root((Day 18 正则表达式))
-    re 模块
-      import re
-      模式写 r''
-      flags=re.I 忽略大小写
-    5 个函数
-      match 只看开头
-      search 第一个
-      findall 全部 list
-      sub 替换
-      split 切分
-    字符集
-      c1["[abc] 任选一个"]
-      c2["[a-z] [0-9] 范围"]
-      c3["[^abc] 取反"]
-      c4["\d 数字 \w 单词 \s 空白"]
-    位置
-      p1["^ 开头"]
-      p2["$ 结尾"]
-      p3[". 任意字符"]
-    次数
-      q1["* 0次或多次"]
-      q2["+ 1次或多次"]
-      q3["? 0或1次"]
-      q4["{n} {n,} {n,m} 指定次数"]
-    组合
-      g1["a|b 或"]
-      g2["( ) 分组"]
-      g3["\ 转义"]
-    坑
-      k1["sub 要写 flags="]
-      k2["贪婪 vs 非贪婪 .*?"]
-    练习
-      高频词 Counter
-      e2["提取数字 -?\d+"]
-      变量名 fullmatch
-      清洗文本 sub
-```
-
----
-
-## 我的行动
-- [ ] 做完 L1–L3 练习，代码放进这篇笔记
-- [ ] 用 [regex101.com](https://regex101.com)（选 Python 模式）调试每个模式
-
----
-相关：30 Days of Python
+相关：30 Days of Python · 下一天：Day19_文件处理
