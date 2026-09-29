@@ -72,16 +72,11 @@ def main():
 
 跟着 [Asabeneh / 30-Days-Of-Python]({COURSE}) 学 Python，每天一篇**我自己的简要总结**：核心概念表格 + 代码例子 + 容易踩的坑 + 思维导图（Mermaid，GitHub 可直接显示）。
 
-目标：5 年内成为 AI 工程师，这是第一步。
-
 **进度**：已完成 {max(days) if days else 0} / 30 天（从 Day {min(days) if days else '-'} 开始记录）
 
 | Day | 主题 |
 |---|---|
 {chr(10).join(rows)}
-
----
-笔记在 Obsidian 里写，用 `python sync.py` 导出到这里。
 """
     (REPO / "README.md").write_text(readme, encoding="utf-8")
     print(f"导出 {len(days)} 天：", ", ".join(days[n][0] for n in sorted(days)))
