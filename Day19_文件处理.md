@@ -5,66 +5,108 @@
 flowchart LR
   R(["Day 19 文件处理"])
   R --- b0["open() 打开文件"]
-  classDef c0 fill:none,stroke:#F5A623,stroke-width:2px,color:#F5A623,font-weight:bold
-  class b0 c0
   b0 --- n1["open 返回文件对象"]
+  subgraph sn1[" "]
   n1 --- n2["像遥控器，用来操作文件"]
   n1 --- n3["print(f) 只显示文件信息"]
+  subgraph sn3[" "]
   n3 --- n4["不是文件内容本身"]
+  end
+  style sn3 fill:none,stroke:none
+  end
+  style sn1 fill:none,stroke:none
+  classDef c0 fill:none,stroke:#F5A623,stroke-width:2px,color:#F5A623,font-weight:bold
+  class b0 c0
   R --- b1["三种读取方式"]
-  classDef c1 fill:none,stroke:#4A90E2,stroke-width:2px,color:#4A90E2,font-weight:bold
-  class b1 c1
   b1 --- n5["read() 全部内容"]
+  subgraph sn5[" "]
   n5 --- n6["返回一整个字符串"]
+  end
+  style sn5 fill:none,stroke:none
   b1 --- n7["readline() 只读一行"]
+  subgraph sn7[" "]
   n7 --- n8["只读第一行"]
   n7 --- n9["返回字符串"]
+  end
+  style sn7 fill:none,stroke:none
   b1 --- n10["readlines() 所有行"]
+  subgraph sn10[" "]
   n10 --- n11["按行拆开"]
   n10 --- n12["返回列表"]
+  end
+  style sn10 fill:none,stroke:none
+  classDef c1 fill:none,stroke:#4A90E2,stroke-width:2px,color:#4A90E2,font-weight:bold
+  class b1 c1
   R --- b2["with 语句"]
-  classDef c2 fill:none,stroke:#2ECC71,stroke-width:2px,color:#2ECC71,font-weight:bold
-  class b2 c2
   b2 --- n13["自动关闭文件"]
+  subgraph sn13[" "]
   n13 --- n14["代码块结束自动 close"]
   n13 --- n15["不用手动写 close"]
   n13 --- n16["更安全，不容易忘记"]
+  end
+  style sn13 fill:none,stroke:none
+  classDef c2 fill:none,stroke:#2ECC71,stroke-width:2px,color:#2ECC71,font-weight:bold
+  class b2 c2
   R --- b3["写入模式对比"]
-  classDef c3 fill:none,stroke:#A66CFF,stroke-width:2px,color:#A66CFF,font-weight:bold
-  class b3 c3
   b3 --- n17["'a' 追加模式"]
+  subgraph sn17[" "]
   n17 --- n18["保留原内容"]
   n17 --- n19["新增写到末尾"]
   n17 --- n20["像排队排到最后"]
+  end
+  style sn17 fill:none,stroke:none
   b3 --- n21["'w' 写入模式"]
+  subgraph sn21[" "]
   n21 --- n22["清空原内容"]
   n21 --- n23["覆盖重写"]
   n21 --- n24["像解散重排队伍"]
+  end
+  style sn21 fill:none,stroke:none
+  classDef c3 fill:none,stroke:#A66CFF,stroke-width:2px,color:#A66CFF,font-weight:bold
+  class b3 c3
   R --- b4["删除文件"]
-  classDef c4 fill:none,stroke:#FF6B6B,stroke-width:2px,color:#FF6B6B,font-weight:bold
-  class b4 c4
   b4 --- n25["os 模块"]
+  subgraph sn25[" "]
   n25 --- n26["操作系统层面管理文件"]
   n25 --- n27["区别于 open 处理内容"]
+  end
+  style sn25 fill:none,stroke:none
   b4 --- n28["os.remove() 删除"]
   b4 --- n29["os.path.exists() 先检查"]
+  subgraph sn29[" "]
   n29 --- n30["避免删除不存在的文件报错"]
+  end
+  style sn29 fill:none,stroke:none
+  classDef c4 fill:none,stroke:#FF6B6B,stroke-width:2px,color:#FF6B6B,font-weight:bold
+  class b4 c4
   R --- b5["JSON 处理"]
-  classDef c5 fill:none,stroke:#1ABC9C,stroke-width:2px,color:#1ABC9C,font-weight:bold
-  class b5 c5
   b5 --- n31["JSON 本质"]
+  subgraph sn31[" "]
   n31 --- n32["字符串格式"]
   n31 --- n33["跨语言、跨程序通用"]
+  end
+  style sn31 fill:none,stroke:none
   b5 --- n34["json.loads()"]
+  subgraph sn34[" "]
   n34 --- n35["字符串 → 字典"]
   n34 --- n36["load 进来解析"]
+  end
+  style sn34 fill:none,stroke:none
   b5 --- n37["json.dumps()"]
+  subgraph sn37[" "]
   n37 --- n38["字典 → 字符串"]
   n37 --- n39["返回类型是 str"]
+  end
+  style sn37 fill:none,stroke:none
   b5 --- n40["json.dump() 不带 s"]
+  subgraph sn40[" "]
   n40 --- n41["直接写入文件"]
   n40 --- n42["不返回字符串"]
   n40 --- n43["转换 + 写入一步完成"]
+  end
+  style sn40 fill:none,stroke:none
+  classDef c5 fill:none,stroke:#1ABC9C,stroke-width:2px,color:#1ABC9C,font-weight:bold
+  class b5 c5
   classDef leaf fill:none,stroke:none,color:#9AA0A6
   classDef root fill:#5B5FC7,stroke:none,color:#fff,font-weight:bold
   class R root

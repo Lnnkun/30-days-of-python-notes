@@ -5,62 +5,101 @@
 flowchart LR
   R(["Day 20 PIP 包管理器"])
   R --- b0["包与模块"]
-  classDef c0 fill:none,stroke:#F5A623,stroke-width:2px,color:#F5A623,font-weight:bold
-  class b0 c0
   b0 --- n1["模块 module"]
+  subgraph sn1[" "]
   n1 --- n2["一个 Python 文件"]
+  end
+  style sn1 fill:none,stroke:none
   b0 --- n3["包 package"]
+  subgraph sn3[" "]
   n3 --- n4["一个文件夹"]
   n3 --- n5["可装多个模块"]
   n3 --- n6["层级比模块更高"]
+  end
+  style sn3 fill:none,stroke:none
+  classDef c0 fill:none,stroke:#F5A623,stroke-width:2px,color:#F5A623,font-weight:bold
+  class b0 c0
   R --- b1["pip 基础操作"]
-  classDef c1 fill:none,stroke:#4A90E2,stroke-width:2px,color:#4A90E2,font-weight:bold
-  class b1 c1
   b1 --- n7["pip install"]
+  subgraph sn7[" "]
   n7 --- n8["下载安装到电脑"]
   n7 --- n9["只需装一次"]
+  end
+  style sn7 fill:none,stroke:none
   b1 --- n10["import"]
+  subgraph sn10[" "]
   n10 --- n11["每份要用的代码里都要写"]
   n10 --- n12["install 和 import 是两步"]
+  end
+  style sn10 fill:none,stroke:none
   b1 --- n13["pip uninstall"]
+  subgraph sn13[" "]
   n13 --- n14["卸载已安装的包"]
+  end
+  style sn13 fill:none,stroke:none
   b1 --- n15["pip list"]
+  subgraph sn15[" "]
   n15 --- n16["列出所有已安装的包"]
   n15 --- n17["给人看，方便自查"]
+  end
+  style sn15 fill:none,stroke:none
   b1 --- n18["pip show"]
+  subgraph sn18[" "]
   n18 --- n19["展示某个包的详细信息"]
+  end
+  style sn18 fill:none,stroke:none
+  classDef c1 fill:none,stroke:#4A90E2,stroke-width:2px,color:#4A90E2,font-weight:bold
+  class b1 c1
   R --- b2["pip freeze"]
-  classDef c2 fill:none,stroke:#2ECC71,stroke-width:2px,color:#2ECC71,font-weight:bold
-  class b2 c2
   b2 --- n20["生成 包名==版本号 清单"]
   b2 --- n21["配合 requirements.txt"]
   b2 --- n22["复现一样的运行环境"]
   b2 --- n23["别人一次装好所有依赖"]
+  classDef c2 fill:none,stroke:#2ECC71,stroke-width:2px,color:#2ECC71,font-weight:bold
+  class b2 c2
   R --- b3["requests 模块"]
-  classDef c3 fill:none,stroke:#A66CFF,stroke-width:2px,color:#A66CFF,font-weight:bold
-  class b3 c3
   b3 --- n24["requests.get(url)"]
+  subgraph sn24[" "]
   n24 --- n25["像网络版的 open()"]
   n24 --- n26["访问网址抓取数据"]
+  end
+  style sn24 fill:none,stroke:none
   b3 --- n27["response 对象"]
+  subgraph sn27[" "]
   n27 --- n28["status_code 状态码"]
+  subgraph sn28[" "]
   n28 --- n29["200 表示成功"]
   n28 --- n30["其他数字表示问题"]
+  end
+  style sn28 fill:none,stroke:none
   n27 --- n31[".text"]
+  subgraph sn31[" "]
   n31 --- n32["原始字符串"]
   n31 --- n33["要自己 json.loads() 解析"]
+  end
+  style sn31 fill:none,stroke:none
   n27 --- n34[".json()"]
+  subgraph sn34[" "]
   n34 --- n35["自动把字符串转成字典"]
   n34 --- n36["比 .text 多一步转换"]
+  end
+  style sn34 fill:none,stroke:none
+  end
+  style sn27 fill:none,stroke:none
+  classDef c3 fill:none,stroke:#A66CFF,stroke-width:2px,color:#A66CFF,font-weight:bold
+  class b3 c3
   R --- b4["创建自己的包"]
-  classDef c4 fill:none,stroke:#FF6B6B,stroke-width:2px,color:#FF6B6B,font-weight:bold
-  class b4 c4
   b4 --- n37["文件夹 + __init__.py"]
   b4 --- n38["__init__.py 的作用"]
+  subgraph sn38[" "]
   n38 --- n39["给 Python 的信号标签"]
   n38 --- n40["空文件也算数"]
   n38 --- n41["让文件夹被识别为包"]
   n38 --- n42["之后才能 import"]
+  end
+  style sn38 fill:none,stroke:none
+  classDef c4 fill:none,stroke:#FF6B6B,stroke-width:2px,color:#FF6B6B,font-weight:bold
+  class b4 c4
   classDef leaf fill:none,stroke:none,color:#9AA0A6
   classDef root fill:#5B5FC7,stroke:none,color:#fff,font-weight:bold
   class R root

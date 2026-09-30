@@ -5,69 +5,108 @@
 flowchart LR
   R(["Day 21 类和对象"])
   R --- b0["基本概念"]
-  classDef c0 fill:none,stroke:#F5A623,stroke-width:2px,color:#F5A623,font-weight:bold
-  class b0 c0
   b0 --- n1["类 class"]
+  subgraph sn1[" "]
   n1 --- n2["设计图纸 / 规则"]
+  end
+  style sn1 fill:none,stroke:none
   b0 --- n3["对象 object"]
+  subgraph sn3[" "]
   n3 --- n4["按图纸造出的具体实例"]
+  end
+  style sn3 fill:none,stroke:none
   b0 --- n5["命名规则"]
+  subgraph sn5[" "]
   n5 --- n6["驼峰命名 CamelCase"]
   n5 --- n7["首字母大写"]
+  end
+  style sn5 fill:none,stroke:none
   b0 --- n8["实例化 instantiate"]
+  subgraph sn8[" "]
   n8 --- n9["调用类，造出一个具体对象"]
+  end
+  style sn8 fill:none,stroke:none
+  classDef c0 fill:none,stroke:#F5A623,stroke-width:2px,color:#F5A623,font-weight:bold
+  class b0 c0
   R --- b1["构造函数 __init__"]
-  classDef c1 fill:none,stroke:#4A90E2,stroke-width:2px,color:#4A90E2,font-weight:bold
-  class b1 c1
   b1 --- n10["每次实例化自动执行"]
   b1 --- n11["初始化对象属性"]
   b1 --- n12["可以设默认参数值"]
+  subgraph sn12[" "]
   n12 --- n13["不传就用默认值"]
   n12 --- n14["传了就覆盖"]
+  end
+  style sn12 fill:none,stroke:none
+  classDef c1 fill:none,stroke:#4A90E2,stroke-width:2px,color:#4A90E2,font-weight:bold
+  class b1 c1
   R --- b2["self"]
-  classDef c2 fill:none,stroke:#2ECC71,stroke-width:2px,color:#2ECC71,font-weight:bold
-  class b2 c2
   b2 --- n15["代表当前这个对象自己"]
   b2 --- n16["Python 自动传入"]
   b2 --- n17["不用手动传值"]
   b2 --- n18["每个对象的 self 互相独立"]
+  classDef c2 fill:none,stroke:#2ECC71,stroke-width:2px,color:#2ECC71,font-weight:bold
+  class b2 c2
   R --- b3["方法与函数"]
-  classDef c3 fill:none,stroke:#A66CFF,stroke-width:2px,color:#A66CFF,font-weight:bold
-  class b3 c3
   b3 --- n19["方法 method"]
+  subgraph sn19[" "]
   n19 --- n20["写在类里面"]
   n19 --- n21["自带 self 参数"]
+  end
+  style sn19 fill:none,stroke:none
   b3 --- n22["函数 function"]
+  subgraph sn22[" "]
   n22 --- n23["独立存在"]
   n22 --- n24["不属于任何类"]
+  end
+  style sn22 fill:none,stroke:none
   b3 --- n25["对象.方法名() 调用"]
+  subgraph sn25[" "]
   n25 --- n26["自动把对象传给 self"]
+  end
+  style sn25 fill:none,stroke:none
+  classDef c3 fill:none,stroke:#A66CFF,stroke-width:2px,color:#A66CFF,font-weight:bold
+  class b3 c3
   R --- b4["对象属性独立性"]
-  classDef c4 fill:none,stroke:#FF6B6B,stroke-width:2px,color:#FF6B6B,font-weight:bold
-  class b4 c4
   b4 --- n27["每个对象有独立属性"]
   b4 --- n28["互不干扰"]
   b4 --- n29["同名属性，数据各自分开"]
+  classDef c4 fill:none,stroke:#FF6B6B,stroke-width:2px,color:#FF6B6B,font-weight:bold
+  class b4 c4
   R --- b5["继承 Inheritance"]
-  classDef c5 fill:none,stroke:#1ABC9C,stroke-width:2px,color:#1ABC9C,font-weight:bold
-  class b5 c5
   b5 --- n30["父类 / 超类 / 基类"]
+  subgraph sn30[" "]
   n30 --- n31["提供方法和属性的一方"]
+  end
+  style sn30 fill:none,stroke:none
   b5 --- n32["子类"]
+  subgraph sn32[" "]
   n32 --- n33["继承别人的一方"]
+  end
+  style sn32 fill:none,stroke:none
   b5 --- n34["class 子类(父类):"]
+  subgraph sn34[" "]
   n34 --- n35["自动获得父类所有方法属性"]
   n34 --- n36["代码复用，避免重复"]
+  end
+  style sn34 fill:none,stroke:none
+  classDef c5 fill:none,stroke:#1ABC9C,stroke-width:2px,color:#1ABC9C,font-weight:bold
+  class b5 c5
   R --- b6["重写与 super()"]
-  classDef c6 fill:none,stroke:#F06292,stroke-width:2px,color:#F06292,font-weight:bold
-  class b6 c6
   b6 --- n37["重写 override"]
+  subgraph sn37[" "]
   n37 --- n38["子类定义同名方法"]
   n37 --- n39["优先执行子类版本"]
+  end
+  style sn37 fill:none,stroke:none
   b6 --- n40["super()"]
+  subgraph sn40[" "]
   n40 --- n41["调用父类原本的代码"]
   n40 --- n42["避免重复写共通逻辑"]
   n40 --- n43["子类只写自己独有的部分"]
+  end
+  style sn40 fill:none,stroke:none
+  classDef c6 fill:none,stroke:#F06292,stroke-width:2px,color:#F06292,font-weight:bold
+  class b6 c6
   classDef leaf fill:none,stroke:none,color:#9AA0A6
   classDef root fill:#5B5FC7,stroke:none,color:#fff,font-weight:bold
   class R root
