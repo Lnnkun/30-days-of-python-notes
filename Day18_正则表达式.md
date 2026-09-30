@@ -177,73 +177,56 @@ flowchart LR
 
 ## 补充说明
 
-### 1. 5 个核心函数
-| 函数 | 做什么 | 返回 |
+### 1. re 模块
+- 用正则前先 `import re`
+- 模式写成原始字符串 `r'...'`,避免 `\d` 这类写法被 Python 先转义
+- `flags=re.I`:忽略大小写
+
+### 2. 5 个核心函数
+| 函数 | 作用 | 返回 |
 |---|---|---|
-| `re.match(p, s)` | **只看开头**是否匹配 | Match 对象 / `None` |
-| `re.search(p, s)` | 全文找**第一个** | Match 对象 / `None` |
-| `re.findall(p, s)` | 全文找**所有** | `list` |
-| `re.sub(p, 新, s)` | **替换**所有匹配 | 新字符串 |
-| `re.split(p, s)` | 按匹配处**切开** | `list` |
+| `re.match()` | 只看开头是否匹配 | Match 对象 / None |
+| `re.search()` | 全文找第一个 | Match 对象 / None |
+| `re.findall()` | 全文找所有 | 列表 |
+| `re.sub()` | 替换所有匹配 | 新字符串 |
+| `re.split()` | 按匹配处切开 | 列表 |
 
-```python
-import re
-txt = 'I love to teach python and javaScript'
+### 3. 字符集 [ ]
+- `[abc]`:其中任意一个字符
+- `[a-z]` / `[0-9]`:一个范围
+- `[^abc]`:`^` 写在方括号里 = 取反
+- `\d` 数字、`\w` 字母数字下划线、`\s` 空白(大写 `\D` `\W` `\S` = 取反)
 
-m = re.match('I love to teach', txt, re.I)   # re.I = 忽略大小写
-print(m.span())               # (0, 15) → 起止位置
-print(re.match('love', txt))  # None（不在开头）
+### 4. 位置
+- `^`:开头;`$`:结尾
+- `.`:任意字符(换行除外)
 
-re.findall('python', 'Python and python', re.I)  # ['Python', 'python']
-re.sub('%', '', 'te%ac%her')                     # 'teacher'  清洗文本
-re.split('\n', 'line1\nline2')                   # ['line1', 'line2']
-```
-
-### 2. 模式语法速查
-| 符号 | 含义 | 例子 → 结果 |
+### 5. 次数
+| 符号 | 次数 | 例子 |
 |---|---|---|
-| `[abc]` `[a-z]` `[0-9]` | 字符集：其中**任意一个** | `[Pp]ython` → Python / python |
-| `[^abc]` | 字符集里的 `^` = **取反** | `[^A-Za-z ]+` → 非字母非空格 |
-| `\d` / `\D` | 数字 / 非数字 | `\d` → '6','2','0'... |
-| `\w` / `\s` | 字母数字下划线 / 空白 | |
-| `.` | 任意字符（除 `\n`） | `a.` → 'an','ar' |
-| `^` / `$` | 开头 / 结尾 | `^This`、`love$` |
 | `*` | 0 次或多次 | `a.*` |
-| `+` | 1 次或多次 | `\d+` → '2019' |
-| `?` | 0 次或 1 次（可选） | `[Ee]-?mail` → email / e-mail |
-| `{4}` `{3,}` `{1,4}` | 精确 / 至少 / 范围次数 | `\d{4}` → '2019' |
-| `a\|b` | 或 | `apple\|banana` |
-| `( )` | 分组 + 捕获 | |
-| `\` | 转义特殊字符 | `\.` 匹配真正的点 |
+| `+` | 1 次或多次 | `\d+` → 完整数字 '2019' |
+| `?` | 0 或 1 次 | `[Ee]-?mail` → email / e-mail |
+| `{n}` `{n,}` `{n,m}` | 指定次数 | `\d{4}` → 只要 4 位 |
 
-### 3. 必背 3 个例子
-```python
-txt = 'made on December 6,  2019 and revised on July 8, 2021'
-re.findall(r'\d', txt)     # ['6','2','0','1','9',...]  一个一个数字 ✗
-re.findall(r'\d+', txt)    # ['6', '2019', '8', '2021']  完整数字 ✓
-re.findall(r'\d{4}', txt)  # ['2019', '2021']            只要 4 位 ✓
-```
+### 6. 组合
+- `a|b`:或
+- `( )`:分组并捕获
+- `\`:转义特殊字符,如 `\.` 匹配真正的点
 
-### 4. 速查图（原教程附图）
-![Day18-regex-cheatsheet.png](images/Day18-regex-cheatsheet.png)
+### 7. 容易踩的坑
+- 模式永远用 `r'...'`
+- `re.sub()` 第 4 个位置参数是 `count`,不是 flags;忽略大小写要写 `flags=re.I`(原教程这里写错了)
+- `match` 只看开头,大多数情况用 `search` / `findall`
+- `*` `+` 默认**贪婪**(尽量多匹配),加 `?` 变非贪婪:`.*?`
 
-- 这张图是通用/JavaScript 风格：`g` 标志和 `$1` 替换写法 **Python 里没有**
-- Python 用 `re.findall` 代替 `g`，替换引用分组写 `\1`
-
-### 5. 容易踩的坑
-- **写模式永远用 `r'...'`**（原始字符串），否则 `\d`、`\b` 会被 Python 先转义掉
-- **`re.sub` 的第 4 个位置参数是 `count` 不是 flags**：`re.sub(p, new, s, re.I)` 实际是"最多替换 2 次"（`re.I == 2`），正确写法是 `flags=re.I`（原教程这里写错了）
-- `match` 只看开头 → 大多数情况用 `search` / `findall`
-- `^` 在 `[]` 外 = 开头；在 `[]` 里第一位 = 取反
-- `*` `+` 默认**贪婪**（尽量多吃），加 `?` 变非贪婪：`.*?`
-
-### 6. 练习要点
-| 等级 | 题目 | 关键工具 |
-|---|---|---|
-| L1 | 段落里最高频的词 | `re.findall(r'\w+', s)` + `collections.Counter` |
-| L1 | 提取坐标并算最远两点距离 | `re.findall(r'-?\d+', s)` → `int` → `max - min` |
-| L2 | 判断是否是合法变量名 | `re.fullmatch(r'[A-Za-z_]\w*', name)` |
-| L3 | 清洗乱码文本 + 前 3 高频词 | `re.sub(r'[^A-Za-z ]', '', s)` + `Counter.most_common(3)` |
+### 8. 练习要点
+| 题目 | 关键工具 |
+|---|---|
+| 段落里最高频的词 | `re.findall(r'\w+', s)` + `Counter` |
+| 提取数字,算最远距离 | `re.findall(r'-?\d+', s)` |
+| 判断合法变量名 | `re.fullmatch(r'[A-Za-z_]\w*', name)` |
+| 清洗乱码文本 | `re.sub(r'[^A-Za-z ]', '', s)` |
 
 
 ---
