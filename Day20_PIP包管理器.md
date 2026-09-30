@@ -6,10 +6,7 @@ flowchart LR
   R(["Day 20 PIP 包管理器"])
   R --- b0["包与模块"]
   b0 --- n1["模块 module"]
-  subgraph sn1[" "]
   n1 --- n2["一个 Python 文件"]
-  end
-  style sn1 fill:none,stroke:none
   b0 --- n3["包 package"]
   subgraph sn3[" "]
   n3 --- n4["一个文件夹"]
@@ -33,10 +30,7 @@ flowchart LR
   end
   style sn10 fill:none,stroke:none
   b1 --- n13["pip uninstall"]
-  subgraph sn13[" "]
   n13 --- n14["卸载已安装的包"]
-  end
-  style sn13 fill:none,stroke:none
   b1 --- n15["pip list"]
   subgraph sn15[" "]
   n15 --- n16["列出所有已安装的包"]
@@ -44,10 +38,7 @@ flowchart LR
   end
   style sn15 fill:none,stroke:none
   b1 --- n18["pip show"]
-  subgraph sn18[" "]
   n18 --- n19["展示某个包的详细信息"]
-  end
-  style sn18 fill:none,stroke:none
   classDef c1 fill:none,stroke:#4A90E2,stroke-width:2px,color:#4A90E2,font-weight:bold
   class b1 c1
   R --- b2["pip freeze"]

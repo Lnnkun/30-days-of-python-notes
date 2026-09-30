@@ -6,15 +6,9 @@ flowchart LR
   R(["Day 21 类和对象"])
   R --- b0["基本概念"]
   b0 --- n1["类 class"]
-  subgraph sn1[" "]
   n1 --- n2["设计图纸 / 规则"]
-  end
-  style sn1 fill:none,stroke:none
   b0 --- n3["对象 object"]
-  subgraph sn3[" "]
   n3 --- n4["按图纸造出的具体实例"]
-  end
-  style sn3 fill:none,stroke:none
   b0 --- n5["命名规则"]
   subgraph sn5[" "]
   n5 --- n6["驼峰命名 CamelCase"]
@@ -22,10 +16,7 @@ flowchart LR
   end
   style sn5 fill:none,stroke:none
   b0 --- n8["实例化 instantiate"]
-  subgraph sn8[" "]
   n8 --- n9["调用类，造出一个具体对象"]
-  end
-  style sn8 fill:none,stroke:none
   classDef c0 fill:none,stroke:#F5A623,stroke-width:2px,color:#F5A623,font-weight:bold
   class b0 c0
   R --- b1["构造函数 __init__"]
@@ -60,10 +51,7 @@ flowchart LR
   end
   style sn22 fill:none,stroke:none
   b3 --- n25["对象.方法名() 调用"]
-  subgraph sn25[" "]
   n25 --- n26["自动把对象传给 self"]
-  end
-  style sn25 fill:none,stroke:none
   classDef c3 fill:none,stroke:#A66CFF,stroke-width:2px,color:#A66CFF,font-weight:bold
   class b3 c3
   R --- b4["对象属性独立性"]
@@ -74,15 +62,9 @@ flowchart LR
   class b4 c4
   R --- b5["继承 Inheritance"]
   b5 --- n30["父类 / 超类 / 基类"]
-  subgraph sn30[" "]
   n30 --- n31["提供方法和属性的一方"]
-  end
-  style sn30 fill:none,stroke:none
   b5 --- n32["子类"]
-  subgraph sn32[" "]
   n32 --- n33["继承别人的一方"]
-  end
-  style sn32 fill:none,stroke:none
   b5 --- n34["class 子类(父类):"]
   subgraph sn34[" "]
   n34 --- n35["自动获得父类所有方法属性"]
