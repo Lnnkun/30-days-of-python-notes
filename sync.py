@@ -70,7 +70,7 @@ def main():
         rows.append(f"| {n} | [{topic}]({name.replace(' ', '%20')}) |")
     readme = f"""# 🐍 30 Days of Python · 学习笔记
 
-跟着 [Asabeneh / 30-Days-Of-Python]({COURSE}) 学 Python，每天一篇**我自己的简要总结**：核心概念表格 + 代码例子 + 容易踩的坑 + 思维导图
+跟着 [Asabeneh / 30-Days-Of-Python]({COURSE}) 学 Python，每天分享一篇我自己的简要总结，希望对你有帮助。
 
 **进度**：已完成 {max(days) if days else 0} / 30 天（从 Day {min(days) if days else '-'} 开始记录）
 
