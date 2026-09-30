@@ -206,5 +206,7 @@ re.findall(r'\d{4}', txt)  # ['2019', '2021']            只要 4 位 ✓
 | L2 | 判断是否是合法变量名 | `re.fullmatch(r'[A-Za-z_]\w*', name)` |
 | L3 | 清洗乱码文本 + 前 3 高频词 | `re.sub(r'[^A-Za-z ]', '', s)` + `Counter.most_common(3)` |
 
+
 ---
-相关：30 Days of Python · 下一天：Day19_文件处理
+
+[📚 目录](README.md) · [下一天：Day 19 文件处理 ➡️](Day19_文件处理.md)

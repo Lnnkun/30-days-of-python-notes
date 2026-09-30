@@ -155,3 +155,7 @@ flowchart LR
 | `json.loads()` | 字符串 → 字典 | 返回字典 |
 | `json.dumps()` | 字典 → 字符串 | 返回字符串 |
 | `json.dump()` | 字典 → 文件 | 直接写入文件,不返回字符串 |
+
+---
+
+[⬅️ 上一天：Day 18 正则表达式](Day18_正则表达式.md) · [📚 目录](README.md) · [下一天：Day 20 PIP包管理器 ➡️](Day20_PIP包管理器.md)
