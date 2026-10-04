@@ -155,4 +155,4 @@ flowchart LR
 
 ---
 
-[⬅️ 上一天：Day 21 类和对象](Day21_类和对象.md) · [📚 目录](README.md)
+[⬅️ 上一天：Day 21 类和对象](Day21_类和对象.md) · [📚 目录](README.md) · [下一天：Day 23 虚拟环境 ➡️](Day23_虚拟环境.md)
