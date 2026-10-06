@@ -125,4 +125,4 @@ flowchart LR
 
 ---
 
-[⬅️ 上一天：Day 22 网络爬虫](Day22_网络爬虫.md) · [📚 目录](README.md)
+[⬅️ 上一天：Day 22 网络爬虫](Day22_网络爬虫.md) · [📚 目录](README.md) · [下一天：Day 24 统计与NumPy ➡️](Day24_统计与NumPy.md)

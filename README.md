@@ -2,7 +2,7 @@
 
 跟着 [Asabeneh / 30-Days-Of-Python](https://github.com/Asabeneh/30-Days-Of-Python) 学 Python，每天分享一篇我自己的简要总结，希望对你有帮助。
 
-**进度**：已完成 23 / 30 天（从 Day 18 开始记录）
+**进度**：已完成 24 / 30 天（从 Day 18 开始记录）
 
 | Day | 主题 |
 |---|---|
@@ -12,3 +12,4 @@
 | 21 | [类和对象](Day21_类和对象.md) |
 | 22 | [网络爬虫](Day22_网络爬虫.md) |
 | 23 | [虚拟环境](Day23_虚拟环境.md) |
+| 24 | [统计与NumPy](Day24_统计与NumPy.md) |
