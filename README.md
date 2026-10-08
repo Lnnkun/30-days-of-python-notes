@@ -2,7 +2,7 @@
 
 跟着 [Asabeneh / 30-Days-Of-Python](https://github.com/Asabeneh/30-Days-Of-Python) 学 Python，每天分享一篇我自己的简要总结，希望对你有帮助。
 
-**进度**：已完成 25 / 30 天（从 Day 18 开始记录）
+**进度**：已完成 26 / 30 天（从 Day 18 开始记录）
 
 | Day | 主题 |
 |---|---|
@@ -14,3 +14,4 @@
 | 23 | [虚拟环境](Day23_虚拟环境.md) |
 | 24 | [统计与NumPy](Day24_统计与NumPy.md) |
 | 25 | [Pandas](Day25_Pandas.md) |
+| 26 | [Flask网页开发](Day26_Flask网页开发.md) |

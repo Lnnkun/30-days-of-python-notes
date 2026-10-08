@@ -329,4 +329,4 @@ df[df['Age'] > 20]
 
 ---
 
-[⬅️ 上一天：Day 24 统计与NumPy](Day24_统计与NumPy.md) · [📚 目录](README.md)
+[⬅️ 上一天：Day 24 统计与NumPy](Day24_统计与NumPy.md) · [📚 目录](README.md) · [下一天：Day 26 Flask网页开发 ➡️](Day26_Flask网页开发.md)

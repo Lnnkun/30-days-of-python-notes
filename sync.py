@@ -40,7 +40,7 @@ def nav_line(days, n) -> str:
 
 def convert(text: str, nav: str = "") -> str:
     text = re.sub(r"\A---\n.*?\n---\n", "", text, flags=re.S)  # YAML 属性
-    text = re.sub(r"^相关：.*\n?", "", text, flags=re.M)         # 换成自动生成的翻页
+    text = re.sub(r"^(相关|导航)：.*\n?", "", text, flags=re.M)  # 换成自动生成的翻页
 
     def image(m):
         name = m.group(1).split("|")[0]
