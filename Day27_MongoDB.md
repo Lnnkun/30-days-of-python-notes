@@ -523,7 +523,7 @@ students = db.students.find({}, {'_id': 0, 'name': 1, 'country': 1})
 ### 11. 容易出错的地方
 1. **字段名区分大小写**:`Country` 和 `country` 是两个字段
 2. **`find()` 和 `update_one()` 的第二个参数作用不同**:一个是显示哪些字段,一个是改成什么
-3. **括号要配对**:`{'$set': {'age': 38}}` 有两层,要两个 `}`,手写时尤其容易漏
+3. **括号要配对**:`{'$set': {'age': 38}}` 有两层,要两个 `}`,语音输入时尤其容易漏
 4. **所有条件写进同一个字典**,不要拆成两个
 5. 教程里的几处坑:
    - 好几段示例用了 `pymongo.MongoClient` 却没有 `import pymongo`
@@ -538,4 +538,4 @@ students = db.students.find({}, {'_id': 0, 'name': 1, 'country': 1})
 
 ---
 
-[⬅️ 上一天：Day 26 Flask网页开发](Day26_Flask网页开发.md) · [📚 目录](README.md)
+[⬅️ 上一天：Day 26 Flask网页开发](Day26_Flask网页开发.md) · [📚 目录](README.md) · [下一天：Day 28 API ➡️](Day28_API.md)
