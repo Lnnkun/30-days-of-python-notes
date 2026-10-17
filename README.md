@@ -2,7 +2,7 @@
 
 跟着 [Asabeneh / 30-Days-Of-Python](https://github.com/Asabeneh/30-Days-Of-Python) 学 Python，每天分享一篇我自己的简要总结，希望对你有帮助。
 
-**进度**：已完成 29 / 30 天（从 Day 18 开始记录）
+**进度**：已完成 30 / 30 天（从 Day 18 开始记录）
 
 | Day | 主题 |
 |---|---|
@@ -18,3 +18,4 @@
 | 27 | [MongoDB](Day27_MongoDB.md) |
 | 28 | [API](Day28_API.md) |
 | 29 | [构建API](Day29_构建API.md) |
+| 30 | [30天总结](Day30_30天总结.md) |
